@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { signInAPI } from "../redux/actions";
 
 const Login = (props) => {
+  console.log(props.user);
   return (
     <Container>
       <Nav>
@@ -160,7 +162,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    signIn: () => dispatch(signInAPI),
+    signIn: () => dispatch(signInAPI()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
