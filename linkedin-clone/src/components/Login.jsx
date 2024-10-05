@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Login = () => {
+const Login = (props) => {
   return (
     <Container>
       <Nav>
@@ -152,5 +153,14 @@ const Google = styled.button`
     color: rgba(0, 0, 0, 0.75);
   }
 `;
-
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: () => dispatch(signInAPI),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
