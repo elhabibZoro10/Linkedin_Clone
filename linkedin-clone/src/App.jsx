@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import { getUserAuth } from "./redux/actions";
 import { connect } from "react-redux";
+import RequireAuth from "./components/RequireAuth";
 
 const App = (props) => {
   useEffect(() => {
@@ -19,10 +20,10 @@ const App = (props) => {
           <Route
             path="/home"
             element={
-              <>
+              <RequireAuth>
                 <Header />
                 <Home />
-              </>
+              </RequireAuth>
             }
           />
         </Routes>
