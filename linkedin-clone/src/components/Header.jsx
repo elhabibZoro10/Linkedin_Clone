@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { signOutAPI } from "../redux/actions";
 
-function Header() {
+function Header(props) {
   return (
     <Container>
       <Content>
@@ -55,6 +57,11 @@ function Header() {
             </NavList>
             <User>
               <a>
+                {props.user && props.user.photoURL ? (
+                  <img src={props.user.photoURL} alt="imgProfil" />
+                ) : (
+                  <img src="/public/images/user.svg" alt="imgProfil" />
+                )}
                 <span>
                   Me
                   <img src="/images/down-icon.svg" alt="" />
@@ -253,4 +260,14 @@ const Work = styled(User)`
     display: none;
   }
 `;
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOutAPI()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
