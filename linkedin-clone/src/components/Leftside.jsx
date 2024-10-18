@@ -205,4 +205,5 @@ const mapStateToProps = (state) => {
     user: state.userState.user,
   };
 };
+
 export default connect(mapStateToProps)(Leftside);
